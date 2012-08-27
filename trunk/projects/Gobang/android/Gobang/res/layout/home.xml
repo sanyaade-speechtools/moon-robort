@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:layout_gravity="center"
+	android:background="@drawable/home_bac">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:id="@+id/relativeLayout1" android:layout_height="fill_parent">
+		<Button android:gravity="center" android:id="@+id/home_btn_ai"
+			android:layout_height="wrap_content" android:layout_width="100dip"
+			android:text="练习" android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true" android:layout_marginTop="120dp"></Button>
+		<Button android:gravity="center" android:id="@+id/home_btn_human"
+			android:layout_height="wrap_content" android:layout_width="100dip"
+			android:text="对弈" android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true" android:layout_marginTop="170dp"></Button>
+		<Button android:gravity="center" android:id="@+id/home_btn_replay"
+			android:layout_height="wrap_content" android:layout_width="100dip"
+			android:text="复盘" android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true" android:layout_marginTop="220dp"></Button>
+	</RelativeLayout>
+</LinearLayout>

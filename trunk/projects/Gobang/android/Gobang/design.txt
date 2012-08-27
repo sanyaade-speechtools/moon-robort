@@ -1,0 +1,21 @@
+View: 棋盘，棋子，纹路，背景，落子，按钮（存储，悔棋，开始。。。）
+Model: 下棋AI，输赢判断，落子判断
+Controller: Listener
+通讯：蓝牙，wifi
+其他：机器学习，训练，算法调研和深究
+
+功能陈述：
+	人机对弈功能，人人对弈功能
+
+Learn MVC模式
+设计模式
+
+
+
+Algorithm:
+Link:
+	1) http://www.google.com.hk/search?sourceid=chrome&ie=UTF-8&q=%E4%BA%94%E5%AD%90%E6%A3%8B+%E7%AE%97%E6%B3%95
+	2) http://blog.csdn.net/shiyanhui66/article/details/6564330
+	3) http://hi.baidu.com/qiuchangjun/blog/item/3c48b7fa69ab1addb58f3139.html
+	4) http://www.bccn.net/article/kfyy/sjjg/200409/50.html
+	5) http://www.chinaai.org/programming/algorithm/gobang.html
