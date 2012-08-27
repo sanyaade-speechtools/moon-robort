@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/board">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<com.robort.game.gobang.BoardView
+			android:id="@+id/board" android:layout_centerInParent="true"
+			android:layout_width="fill_parent" android:layout_margin="10dp"
+			android:layout_height="300dp"></com.robort.game.gobang.BoardView>
+		<Button android:id="@+id/play_btn_regret"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:text="悔棋" android:layout_below="@+id/board"
+			android:layout_alignLeft="@+id/board"></Button>
+		<Button android:id="@+id/play_btn_reset"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:text="重来" android:layout_below="@+id/board"
+			android:layout_toRightOf="@+id/play_btn_regret"></Button>
+	</RelativeLayout>
+</LinearLayout>
