@@ -230,9 +230,9 @@ public class Pattern {
 	}
 	
 	class ShapeParams {
-		public int match_count;
-		public int empty_count;
-		public int block_count;
+		public int match_count;		// 形状中，同色的子数
+		public int empty_count;		// 形状中，内部空格的数量
+		public int block_count;		// 形状两端，被对方棋子阻拦的个数。x | [0,1,2]
 		
 		public ShapeParams() {
 			match_count = empty_count = block_count = 0;

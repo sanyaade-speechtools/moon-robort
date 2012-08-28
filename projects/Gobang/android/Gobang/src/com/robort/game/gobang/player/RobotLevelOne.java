@@ -6,7 +6,7 @@ import com.robort.game.gobang.model.Side;
 
 /**
  * 采用博弈树的思想，利用最大最小原理进行搜索，用Alpha-Beta剪枝进行优化
- * @author Thinkpad
+ * @author Robort
  *
  */
 public class RobotLevelOne extends Robot {

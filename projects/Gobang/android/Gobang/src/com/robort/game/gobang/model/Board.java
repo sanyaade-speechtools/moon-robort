@@ -458,7 +458,7 @@ public class Board {
 	}
 	
 	/**
-	 * 计算改方向上是否包含活三、活四、冲四
+	 * 计算该方向上是否包含活三、活四、冲四
 	 * @param piece
 	 * @param direction
 	 * @return

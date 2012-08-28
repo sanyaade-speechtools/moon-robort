@@ -20,6 +20,9 @@ public class Robot extends Player implements IRobot{
 		lastPiece = board.pieces.get(board.pieces.size()-1);
 	}
 	
+	/**
+	 * Think is to find set the value of decision_x and decision_y;
+	 */
 	public void think() {
 		sleep(500);
 		
