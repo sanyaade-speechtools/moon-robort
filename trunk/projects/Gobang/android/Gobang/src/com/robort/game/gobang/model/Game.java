@@ -10,6 +10,7 @@ import com.robort.game.gobang.R;
 import com.robort.game.gobang.player.Man;
 import com.robort.game.gobang.player.Player;
 import com.robort.game.gobang.player.Robot;
+import com.robort.game.gobang.player.RobotLevelOne;
 import com.robort.game.gobang.util.Logger;
 
 public class Game {
@@ -41,7 +42,7 @@ public class Game {
 		}
 		else if (mode == Mode.HUMAN_TO_BOT) {
 			players[0] = new Man(Side.Black);
-			players[1] = new Robot(Side.White);
+			players[1] = new RobotLevelOne(Side.White);
 		}
 		else if (mode == Mode.BOT_TO_HUMAN) {
 			players[0] = new Robot(Side.Black);
