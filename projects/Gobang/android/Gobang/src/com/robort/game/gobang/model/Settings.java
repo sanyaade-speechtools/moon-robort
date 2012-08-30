@@ -15,4 +15,8 @@ public class Settings {
 	public void setBanned(boolean banned) {
 		this.banned = banned;
 	}
+	
+	public boolean isBanned() {
+		return this.banned;
+	}
 }

@@ -1,7 +1,7 @@
 package com.robort.game.gobang.model;
 
 /**
- * 用于存储棋形分析的结果
+ * 用于分析棋形并存储分析结果
  * @author Thinkpad
  */
 public class Pattern {
@@ -15,7 +15,7 @@ public class Pattern {
 	public int first_empty_neg;
 	public int first_empty_pos;
 	
-	private ShapesInLine shapes;
+	private ShapesInDirection shapes;
 	private Constants.shapes left_shape;
 	private Constants.shapes right_shape;
 	private Constants.shapes mid_cont_shape;
@@ -29,14 +29,14 @@ public class Pattern {
 		left_shape = right_shape = mid_cont_shape = null;
 	}
 	
-	public Pattern.ShapesInLine getShapes() {
+	public Pattern.ShapesInDirection getShapes() {
 		if (shapes == null) {
 			if (this.empty_num == 0)
-				shapes = new ShapesInLine(1, getMiddleContShape());
+				shapes = new ShapesInDirection(1, getMiddleContShape());
 			else if (this.empty_num == 1)
-				shapes = new ShapesInLine(2, getLeftJumpShape(), getRightJumpShape());
+				shapes = new ShapesInDirection(2, getLeftJumpShape(), getRightJumpShape());
 			else
-				shapes = new ShapesInLine(3, getLeftJumpShape(), getMiddleContShape(), getRightJumpShape());
+				shapes = new ShapesInDirection(3, getLeftJumpShape(), getMiddleContShape(), getRightJumpShape());
 		}
 		return shapes;	
 	}
@@ -62,6 +62,38 @@ public class Pattern {
 		return mid_cont_shape;
 	}
 	
+	/**
+	 * 在区域内，得到棋形的关键性参数，如，同色的棋子个数，空格数，被拦的数目
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	protected ShapeParams getShapeParams(int start, int end) {
+		ShapeParams shapeParams = new ShapeParams();
+		// 相同颜色棋子数，中间空子数，两边被拦的子数
+		for (int i=start; i<=end; i++) {
+			if (pieces_line[i] == Side.reverse(piece.side))
+				break;
+			else if (pieces_line[i] == piece.side) {
+				shapeParams.match_count ++;
+			}
+			else {
+				shapeParams.empty_count ++;
+			}
+		}
+		if (start > 0 && pieces_line[start-1] == Side.reverse(piece.side))
+			shapeParams.block_count ++ ;
+		if (end < pieces_line.length-1 && pieces_line[end+1] == Side.reverse(piece.side))
+			shapeParams.block_count ++ ;
+		return shapeParams;
+	}
+	
+	/**
+	 * 得到范围内的基本棋形；基本棋形会被用于分析该方向上的整体棋形
+	 * @param start
+	 * @param end
+	 * @return
+	 */
 	protected Constants.shapes getBasicShape(int start, int end) {
 		ShapeParams params = getShapeParams(start, end);
 		
@@ -83,27 +115,37 @@ public class Pattern {
 			return Constants.shapes.DEAD_THREE;
 		else if (isDeadTwo(params))
 			return Constants.shapes.DEAD_TWO;
+		else if (isFive(params))
+			return Constants.shapes.FIVE;
+		else if (isLongCont(params))
+			return Constants.shapes.LONG_CONT;
 		return Constants.shapes.NOT_DEFINED;
 	}
 	
-	protected ShapeParams getShapeParams(int start, int end) {
-		ShapeParams shapeParams = new ShapeParams();
-		// 相同颜色棋子数，中间空子数，两边被拦的子数
-		for (int i=start; i<=end; i++) {
-			if (pieces_line[i] == Side.reverse(piece.side))
-				break;
-			else if (pieces_line[i] == piece.side) {
-				shapeParams.match_count ++;
-			}
-			else {
-				shapeParams.empty_count ++;
-			}
-		}
-		if (start > 0 && pieces_line[start-1] == Side.reverse(piece.side))
-			shapeParams.block_count ++ ;
-		if (end < pieces_line.length-1 && pieces_line[end+1] == Side.reverse(piece.side))
-			shapeParams.block_count ++ ;
-		return shapeParams;
+
+	
+	/**
+	 * 判断落子是否成五，即连续的五
+	 * @param params
+	 * @return
+	 */
+	protected boolean isFive(ShapeParams params) {
+		if (params.match_count == Constants.rules.FIVE
+				&& params.empty_count == 0)
+			return true;
+		return false;
+	}
+	
+	/**
+	 * 判断是否成长连，即连续的棋子超过五个
+	 * @param params
+	 * @return
+	 */
+	protected boolean isLongCont(ShapeParams params) {
+		if (params.match_count > Constants.rules.FIVE
+				&& params.empty_count == 0)
+			return true;
+		return false;
 	}
 	
 	/**
@@ -239,13 +281,21 @@ public class Pattern {
 		}
 	}
 	
-	public class ShapesInLine{
+	public class ShapesInDirection{
 		Constants.shapes [] shapes;
 		int count;
 		
-		public ShapesInLine(int count, Constants.shapes... shapes) {
+		public ShapesInDirection(int count, Constants.shapes... shapes) {
 			this.count = count;
 			this.shapes = shapes;
+		}
+		
+		public int getShapesCount() {
+			return count;
+		}
+		
+		public Constants.shapes[] getShapes() {
+			return shapes;
 		}
 		
 		/**

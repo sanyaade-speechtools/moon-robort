@@ -12,4 +12,13 @@ public class Piece {
 		this.y = y;
 	}
 	
+	public Piece reverseSide() {
+		return new Piece(Side.reverse(side), x, y);
+	}
+
+	@Override
+	public String toString() {
+		return "Piece [side=" + side + ", x=" + x + ", y=" + y + "]";
+	}
+	
 }

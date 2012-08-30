@@ -20,6 +20,7 @@ public class Constants {
 	public enum shapes {
 		// For the shapes, refer to here: http://www.rifchina.com/qtym/jianjie2.html
 		FIVE/*五连*/, 
+		LONG_CONT, /*长连*/
 		LIVE_FOUR/*活四*/, RUSH_FOUR/*冲四*/, DEAD_FOUR/*死四*/, // DOUBLE_RUSH_FOUR/*双冲四*/,
 		LIVE_THREE/*活三*/, ASLEEP_THREE/*眠三*/, DEAD_THREE/*死三*/, // DOUBLE_ASLEEP_THREE/*双眠三*/,
 		LIVE_TWO/*活二*/, ASLEEP_TWO/*眠二*/, DEAD_TWO/*死二*/,

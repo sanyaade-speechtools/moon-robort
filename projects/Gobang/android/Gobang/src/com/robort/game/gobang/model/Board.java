@@ -185,7 +185,7 @@ public class Board {
 					Logger.e("Get continuous pieces failed!!!");
 					e.printStackTrace();
 				}
-				// 对于特殊的一行中形成的双活四，判负
+				// 特殊的，对于一行中形成的双活四，判负
 				if (count_pieces[i] == Constants.rules.ILLEGAL) {
 					return true;
 				}
@@ -250,7 +250,7 @@ public class Board {
 	 * @param direction
 	 * @return
 	 */
-	public Pattern.ShapesInLine getShape(Piece piece, int direction) {
+	public Pattern.ShapesInDirection getShapesInDirection(Piece piece, int direction) {
 		try {
 			return getPattern(piece, direction).getShapes();
 		} catch (Exception e) {
@@ -329,7 +329,7 @@ public class Board {
 	 * @param pieces_line
 	 * @throws Exception
 	 */
-	private Pattern getPattern(Piece piece, int direction) throws Exception{
+	public Pattern getPattern(Piece piece, int direction) throws Exception{
 		Pattern pattern = new Pattern(piece, direction);
 		
 		int increment_x, increment_y;
@@ -464,9 +464,9 @@ public class Board {
 	 * @return
 	 * @throws Exception
 	 */
-	private int getThreeFour(Piece piece, int direction) throws Exception {		
+	public int getThreeFour(Piece piece, int direction) throws Exception {		
 		// Get neighboring pieces
-		Pattern.ShapesInLine shapes = getPattern(piece, direction).getShapes();
+		Pattern.ShapesInDirection shapes = getPattern(piece, direction).getShapes();
 		
 		// 如果两边都有冲四，则为四四禁手（扁担阵），返回 ILLEGAL
 		if (shapes.hasDoubleRushFour()) {
