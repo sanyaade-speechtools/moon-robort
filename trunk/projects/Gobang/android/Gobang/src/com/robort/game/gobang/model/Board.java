@@ -245,22 +245,6 @@ public class Board {
 	}
 	
 	/**
-	 * 得到落子后在该方向上可能得到的形状
-	 * @param piece
-	 * @param direction
-	 * @return
-	 */
-	public Pattern.ShapesInDirection getShapesInDirection(Piece piece, int direction) {
-		try {
-			return getPattern(piece, direction).getShapes();
-		} catch (Exception e) {
-			Logger.e("Error when getting pattern!!");
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	/**
 	 * 从某个落子出发，得到某个方向，连续的相同颜色的落子的个数
 	 * @param piece
 	 * @param direction
@@ -323,6 +307,22 @@ public class Board {
 	}
 	
 	/**
+	 * 得到落子后在该方向上可能得到的形状
+	 * @param piece
+	 * @param direction
+	 * @return
+	 */
+	public Pattern.ShapesInDirection getShapesInDirection(Piece piece, int direction) {
+		try {
+			return getPattern(piece, direction).getShapes();
+		} catch (Exception e) {
+			Logger.e("Error when getting pattern!!");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
 	 * 计算该方向上，周围的棋形；对于五子棋只计算[-4, 4]范围内的棋子
 	 * @param piece
 	 * @param direction
@@ -365,14 +365,14 @@ public class Board {
 		// 设置正要下的子
 		pattern.pieces_line[Constants.rules.FIVE - 1] = piece.side;
 		
-		// 得到反方向的棋形
+		// 得到反方向的棋的位置
 		for (int x = piece.x - increment_x, y = piece.y - increment_y, i = 0; 
 			x >= min_x && y >= min_y && x <= max_x && y <= max_y; 
 			x -= increment_x, y -= increment_y, i++) 
 		{
 			pattern.pieces_line[Constants.rules.FIVE-2-i] = pieces_neg[i] = piecesStatus[x][y];
 		}		
-		// 得到正方向的棋形
+		// 得到正方向的棋的位置
 		for (int x = piece.x + increment_x, y = piece.y + increment_y, i = 0; 
 		x >= min_x && y >= min_y && x <= max_x && y <= max_y; 
 			x += increment_x, y += increment_y, i++) 

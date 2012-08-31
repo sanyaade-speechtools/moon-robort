@@ -67,8 +67,7 @@ public class RobotLevelOne extends Robot {
 		int posVal = this.evaluateBySide(piece);
 		int negVal = this.evaluateBySide(piece.reverseSide());
 		if (posVal + negVal > 0) {
-			Logger.i(piece + " { pos : " + posVal + " }");
-			Logger.i(piece + " { neg : " + negVal + " }");
+			Logger.i(piece + " { total : " + (posVal+negVal) + " }" + " { pos : " + posVal + " }" + " { neg : " + negVal + " }");
 		}
 		return posVal + negVal;
 	}
@@ -85,7 +84,7 @@ public class RobotLevelOne extends Robot {
 			return - LEVEL_1;
 		
 		// 绝对负手：黑棋禁手
-		if (this.side.isBlack() && board.isBanned(piece))
+		if (piece.side.isBlack() && board.isBanned(piece))
 			return - LEVEL_1;
 		
 		// 绝对胜手：活五
@@ -109,7 +108,7 @@ public class RobotLevelOne extends Robot {
 			}
 			
 			// 首先考虑，单方向胜手，即双冲四（此处显然只有白棋会返回true)
-			if (this.side.isWhite() && shapesInDirs[direction].hasDoubleRushFour()) {
+			if (piece.side.isWhite() && shapesInDirs[direction].hasDoubleRushFour()) {
 				value += LEVEL_1;
 			}
 		}
@@ -125,7 +124,7 @@ public class RobotLevelOne extends Robot {
 		Directions dirLiveTwo =  whereIsShape(shapesInDirs, Constants.shapes.LIVE_TWO);
 		
 		// 比如，对于黑棋，有四三胜，即只有一个方向有三，一个方向有四，或者活四，+L2
-		if (this.side.isBlack()) {
+		if (piece.side.isBlack()) {
 			if (dirLiveFour.exists())	// 活四
 				value += this.LEVEL_2;
 			else if (isThreeFourWin(piece))	// 四三
@@ -133,10 +132,11 @@ public class RobotLevelOne extends Robot {
 		}
 		
 		// 对于白棋，四三，活四(双活四)，双活三，以及其他等胜手，+L2
-		if (this.side.isWhite()) {
+		if (piece.side.isWhite()) {
 			if(dirLiveFour.exists()) {				// 活四
 				value += this.LEVEL_2;
-			} else if (! dirLiveThree.equals(dirRushFour)) { // 四三
+			} else if (dirLiveThree.exists() && dirRushFour.exists() && 
+					! dirLiveThree.equals(dirRushFour)) { // 四三
 				value += this.LEVEL_2;
 			} else if (dirLiveThree.count() > 1) {  // 双活三
 				value += this.LEVEL_2;
