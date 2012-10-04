@@ -1,5 +1,8 @@
 #labels Phase-Design,Phase-Implementation
+#An easy-to-use game engine for game lovers.
+
 JadeRabbit 玉兔
+
 
 =Objective=
 An easy-to-use game engine for both professional designer and common player.
