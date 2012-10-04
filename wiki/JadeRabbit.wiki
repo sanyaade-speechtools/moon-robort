@@ -3,7 +3,7 @@
 
 =JadeRabbit 玉兔=
 
-[http://www.google.com http://t0.gstatic.com/images?q=tbn:ANd9GcStwhLzwB9yJPmas_1p-G_P1u4ysMmMdQn6_xaqEyGNKQb8d2M3]
+[http://www.google.com http://t0.gstatic.com/images?q=tbn:ANd9GcStwhLzwB9yJPmas_1p-G_P1u4ysMmMdQn6_xaqEyGNKQb8d2M3&cht=bvg&nonsense=something_that_ends_with.jpg]
 
 =Objective=
 An easy-to-use game engine for both professional designer and common player.
