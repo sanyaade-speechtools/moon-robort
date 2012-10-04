@@ -1,0 +1,33 @@
+#labels Phase-Design,Phase-Implementation,Featured
+JadeRabbit 玉兔
+
+=Objective=
+An easy-to-use game engine for both professional designer and common player.
+
+=Description=
+
+=Investigation=
+==HTML5==
+===Tutorial===
+
+[http://www.w3schools.com/html/html5_intro.asp w3school - HTML5 introduction]
+
+===Community===
+[http://www.mhtml5.com/ HTML5研究小组]
+
+==HTML5 games==
+
+[http://coolshell.cn/articles/2998.html HTML5小游戏展示]
+
+[http://www.netmagazine.com/features/top-20-html5-games Top20 HTML5 game (2012)]
+
+[http://www.pirateslovedaisies.com/ Pirate Love Daisies]
+
+==HTML5 game engines==
+[https://gist.github.com/768272 List of JS game engines]
+
+=Design=
+
+=Implementation=
+
+=Release=
